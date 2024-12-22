@@ -6,6 +6,8 @@ import { fastifySwagger } from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
 import { routes } from './routes';
 
+const port = Number(process.env.PORT || 3333);
+
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
 app.setValidatorCompiler(validatorCompiler);
@@ -31,6 +33,6 @@ app.register(fastifySwaggerUi, {
 
 app.register(routes);
 
-app.listen({ port: 3333 }, (_err, address) => {
+app.listen({ port }, (_err, address) => {
   console.log(`Server listening at ${address}`);
 });
